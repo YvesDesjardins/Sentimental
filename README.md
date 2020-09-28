@@ -1,0 +1,2 @@
+# Sentimental
+WSB sentiment analysis
