@@ -1,6 +1,6 @@
 from services.reddit import get_reddit_client
 from utils.posts import process_post
-from utils.comments import get_comments
+from utils.comments import process_comments
 from services.db import close_db_connection
 
 def run():
@@ -11,7 +11,7 @@ def run():
   print("Updating DB and preping model, this may take a minute or two")
   for post in posts:
       process_post(post)
-      get_comments(post)
+      process_comments(post)
 
   close_db_connection()
 

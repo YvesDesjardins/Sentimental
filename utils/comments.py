@@ -1,11 +1,18 @@
-from services.db import get_db_client
+import os, sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from services.db import select_where_id, insert
 
-db = get_db_client()
+table = "Comments"
 
-def get_comments(post):
-    print("Top Comment ----------")
-    comment = post.comments[0]
-    print(comment.id)
-    print(comment.author)
-    print(comment.score)
-    print(comment.body)
+def process_comments(post):
+    comments = post.comments.list()
+    top_comment = comments[0]
+    records = select_where_id(table, post.id)
+
+    # insert if no records exist
+    if len(records) == 0:
+        options = "(id, post_id, author_id, score, body) VALUES (?, ?, ?, ?, ?)"
+        data_tuple = (top_comment.id, top_comment.link_id, top_comment.author.id, top_comment.score, top_comment.body)
+        insert(table, options, data_tuple)
+    else:
+        # todo - might want to update existing?

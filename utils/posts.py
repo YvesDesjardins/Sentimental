@@ -9,10 +9,8 @@ def process_post(post):
 
     # insert if no records exist
     if len(records) == 0:
-        print("insert")
         options = "(id, author_id, title, score, selftext, url) VALUES (?, ?, ?, ?, ?, ?)"
         data_tuple = (post.id, post.author.id, post.title, post.score, post.selftext, post.url)
         insert(table, options, data_tuple)
     else:
-        print("update")
         # todo - might want to update existing?
