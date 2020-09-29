@@ -1,11 +1,13 @@
 import os, sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from services.db import select_where_id, insert
+from utils.authors import process_author
 
 table = "Posts"
 
 def process_post(post):
     records = select_where_id(table, post.id)
+    process_author(post)
 
     # insert if no records exist
     if len(records) == 0:
