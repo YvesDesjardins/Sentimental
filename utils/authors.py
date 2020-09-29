@@ -4,8 +4,7 @@ from services.db import select_where_id, insert
 
 table = "Authors"
 
-def process_author(item):
-    author = item.author
+def process_author(author):
     records = select_where_id(table, author.id)
 
     # insert if no records exist
