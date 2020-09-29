@@ -1,14 +1,12 @@
 import os, sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from services.db import select_where_id, insert
-from utils.authors import process_author
 
 table = "Comments"
 
 def process_comments(post):
     comments = post.comments.list()
     top_comment = comments[0]
-    process_author(top_comment.author)
     records = select_where_id(table, top_comment.id)
 
     # insert if no records exist

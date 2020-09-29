@@ -7,7 +7,6 @@ table = "Posts"
 
 def process_post(post):
     records = select_where_id(table, post.id)
-    process_author(post.author)
 
     # insert if no records exist
     if len(records) == 0:

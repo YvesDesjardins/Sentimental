@@ -10,7 +10,7 @@ def process_author(author):
     # insert if no records exist
     if len(records) == 0:
         options = "(id, name) VALUES (?, ?)"
-        data_tuple = (author.id, author.name)
+        data_tuple = (author.id, author.name )
         insert(table, options, data_tuple)
     else:
         return
