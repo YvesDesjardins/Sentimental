@@ -13,4 +13,5 @@ def process_post(post):
         data_tuple = (post.id, post.author.id, post.title, post.score, post.selftext, post.url)
         insert(table, options, data_tuple)
     else:
+        return
         # todo - might want to update existing?
