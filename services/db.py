@@ -14,7 +14,7 @@ except sqlite3.Error as error:
     print("Error while connecting to sqlite", error)
 
 def get_db_client():
-    return cursor
+    return sqliteConnection
 
 def close_db_connection():
     cursor.close()
