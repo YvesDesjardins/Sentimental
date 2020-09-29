@@ -6,7 +6,7 @@ from services.db import close_db_connection
 def run():
   reddit = get_reddit_client()
   subreddit = reddit.subreddit("wallstreetbets")
-  posts = subreddit.hot(limit=10)
+  posts = subreddit.hot(limit=25)
 
   print("Updating DB and preping model, this may take a minute or two")
   for post in posts:
