@@ -12,7 +12,7 @@ def process_comments(post):
     # insert if no records exist
     if len(records) == 0:
         options = "(id, post_id, author_id, score, body) VALUES (?, ?, ?, ?, ?)"
-        data_tuple = (top_comment.id, top_comment.link_id, top_comment.author.id, top_comment.score, top_comment.body)
+        data_tuple = (top_comment.id, post.id, top_comment.author.id, top_comment.score, top_comment.body)
         insert(table, options, data_tuple)
     else:
         return
