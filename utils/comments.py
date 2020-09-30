@@ -5,15 +5,16 @@ from services.db import select_where_id, insert
 table = "Comments"
 
 def process_comments(post):
+    post.comments.replace_more(limit=10)
     comments = post.comments.list()
-    top_comment = comments[0]
-    records = select_where_id(table, top_comment.id)
+    for comment in comments:
+      records = select_where_id(table, comment.id)
 
-    # insert if no records exist
-    if len(records) == 0:
-        options = "(id, post_id, author_id, score, body) VALUES (?, ?, ?, ?, ?)"
-        data_tuple = (top_comment.id, post.id, top_comment.author.id, top_comment.score, top_comment.body)
-        insert(table, options, data_tuple)
-    else:
-        return
-        # todo - might want to update existing?
+      # insert if no records exist
+      if len(records) == 0:
+          options = "(id, post_id, author_id, score, body) VALUES (?, ?, ?, ?, ?)"
+          data_tuple = (comment.id, post.id, comment.author.id, comment.score, comment.body)
+          insert(table, options, data_tuple)
+      else:
+          return
+          # todo - might want to update existing?
