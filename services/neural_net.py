@@ -12,7 +12,7 @@ min_confidence = 0.7
 min_data_points = 50
 result = {'pos': 0, 'neg': 0, 'neu': 0}
 symbols = {}
-regex_filter = r'([$])+'
+regex_filter = r'([$()])+'
 
 # todo: this file really needs a refactor/rewrite
 def analyze_post(post):
@@ -47,7 +47,7 @@ def analyze_post(post):
 
 def get_sentiment():
     print("\n%s" % result)
-    pos_confidence = result['pos']/result['neg']
+    pos_confidence = result['pos']/result['pos']+result['neg']
     return("Overall sentiment is %s" % "long" if pos_confidence > min_confidence else "short" if pos_confidence < (1-min_confidence) else "neutral")
 
 def get_sentiment_symbols():
@@ -57,7 +57,7 @@ def get_sentiment_symbols():
         neg = stats['neg']
         neu = stats['neu']
         sum_data_points = pos + neg + neu
-        pos_confidence = (pos if pos > 0 else 1)/(neg if neg > 0 else 1)
+        pos_confidence = (pos if pos > 0 else 1)/((pos if pos > 0 else 1)+(neg if neg > 0 else 1))
 
         if sum_data_points > min_data_points:
           parsed_results.append('%(symbol)s: %(sentiment)s from %(total)s datapoints (%(pos)s positive/ %(neg)s negative)' % {
@@ -72,13 +72,13 @@ def get_sentiment_symbols():
 def __parse_symbols(string, change):
     words = string.split(' ')
     for word in words:
-        upperword = re.sub(regex_filter, '', word.upper())
-        if has_symbol(upperword):
-            if not upperword in symbols:
-                symbols[upperword] = {'pos': 0, 'neg': 0, 'neu': 0}
+        filtered_word = re.sub(regex_filter, '', word)
+        if has_symbol(filtered_word):
+            if not filtered_word in symbols:
+                symbols[filtered_word] = {'pos': 0, 'neg': 0, 'neu': 0}
             if change == 'pos':
-              symbols[upperword]['pos'] += 1
+              symbols[filtered_word]['pos'] += 1
             elif change == 'neg':
-              symbols[upperword]['neg'] += 1
+              symbols[filtered_word]['neg'] += 1
             else:
-              symbols[upperword]['neu'] += 1
+              symbols[filtered_word]['neu'] += 1
