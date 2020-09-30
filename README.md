@@ -19,6 +19,9 @@ The model being used is VADER (https://github.com/cjhutto/vaderSentiment), origi
 - PRAW
 - NLTK
 
+## Disclosure
+As data is being pulled and stored from Reddit (and especially Wallstreet Bets) there will likely be some comments that are rather distateful/inappropriate. I do not agree with or support any opinions or comments that might be included in the DB unless I outright state so here. This is just for a fun project so please treat it as such :).
+
 ## Future additions
 - User rating system based on track record
 - FE to navigate details
