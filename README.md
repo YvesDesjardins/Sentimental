@@ -22,4 +22,4 @@ The model being used is VADER (https://github.com/cjhutto/vaderSentiment), origi
 ## Future additions
 - User rating system based on track record
 - FE to navigate details
-- 
+- Make the code not shit
