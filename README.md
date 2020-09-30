@@ -11,7 +11,7 @@ The model being used is VADER (https://github.com/cjhutto/vaderSentiment), origi
 - Rename .env.public to .env and populate with your information
 - python(3) main.py
 - If you have issues with results/running, try increasing the timeout and ratelimits for PRAW
-  -Iincrease PRAW's timeout in env/lib/praw/praw.ini, 45 has worked for me along with ratelimit 10
+  - Increase PRAW's timeout in env/lib/praw/praw.ini, 45 has worked for me along with ratelimit 10
 
 ## Stack
 - Python
