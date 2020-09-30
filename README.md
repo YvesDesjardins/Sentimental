@@ -26,3 +26,4 @@ As data is being pulled and stored from Reddit (and especially Wallstreet Bets) 
 - User rating system based on track record
 - FE to navigate details
 - Make the code not shit
+- Perform sentiment analysis off of stored posts + comments
