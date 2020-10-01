@@ -12,15 +12,16 @@ def run():
     # make sure to increase praw's rate limit in env/lib/praw/praw.ini, 45 has worked for me along with ratelimit 10
     posts = subreddit.search("flair:DD", sort="hot", time_filter="week", limit=100)
 
-    print("Updating DB and preping model, this may take a couple minutes \n")
+    print("Updating DB and preping model, this may take a couple minutes \n\n")
     for post in posts:
         process_post(post)
         # process_comments(post)
         # process_author(post.author)
         analyze_post(post)
 
+    print("Finished Processing \n\n")
     print(get_sentiment(), '\n')
-    print(get_sentiment_symbols())
+    print(get_sentiment_symbols(), '\n')
 
 if __name__ == "__main__":
     run()
