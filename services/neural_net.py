@@ -9,7 +9,7 @@ nltk.download('vader_lexicon')
 
 analyzer = SentimentIntensityAnalyzer()
 min_confidence = 0.7
-min_data_points = 15
+min_data_points = 20
 result = {'pos': 0, 'neg': 0, 'neu': 0}
 symbols = {}
 regex_filter = r'([$()])+'
@@ -60,12 +60,13 @@ def get_sentiment_symbols():
         pos_confidence = (pos if pos > 0 else 1)/((pos if pos > 0 else 1)+(neg if neg > 0 else 1))
 
         if sum_data_points > min_data_points:
-          parsed_results.append('%(symbol)s: %(sentiment)s from %(total)s datapoints (%(pos)s positive/ %(neg)s negative)' % {
+          parsed_results.append('%(symbol)s: %(sentiment)s from %(total)s datapoints (%(pos)s positive/ %(neg)s negative/ %(neu)s neutral)' % {
             'symbol': symb,
             'sentiment': "long" if pos_confidence > min_confidence else "short" if pos_confidence < (1-min_confidence) else "neutral",
             'total': sum_data_points,
             'pos': pos,
-            'neg': neg
+            'neg': neg,
+            'neu': neu
             })
     return '\n'.join(parsed_results)
 
