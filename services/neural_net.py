@@ -9,7 +9,7 @@ nltk.download('vader_lexicon')
 
 analyzer = SentimentIntensityAnalyzer()
 min_confidence = 0.7
-min_data_points = 50
+min_data_points = 15
 result = {'pos': 0, 'neg': 0, 'neu': 0}
 symbols = {}
 regex_filter = r'([$()])+'
